@@ -27,7 +27,7 @@ namespace YOLOv4MLNet
 
         public static List<YoloV4Result> Recognize(string imagePath)
         {
-            const string modelPath = @"C:\Users\ayakshibaeva\source\repos\YOLOv4MLNet\yolov4.onnx";
+            const string modelPath = @"C:\Users\ayakshibaeva\source\repos\402_yakshibaeva\YOLOv4MLNet\YOLOv4MLNet\Assets\yolov4.onnx";
 
             MLContext mlContext = new MLContext();
             ConcurrentBag<YoloV4Result> modelOutput = new ConcurrentBag<YoloV4Result>();

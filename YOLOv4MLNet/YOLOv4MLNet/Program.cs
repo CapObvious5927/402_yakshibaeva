@@ -15,7 +15,7 @@ namespace YOLOv4MLNet
             Console.WriteLine("  Please, enter the path to the images folder (by default it is C:\\Users\\ayakshibaeva\\Source\\Repos\\YOLOv4MLNet\\YOLOv4MLNet\\Assets\\Images): ");
             string imagePath = Console.ReadLine();
             if (String.IsNullOrEmpty(imagePath))
-                imagePath = @"C:\Users\ayakshibaeva\Source\Repos\YOLOv4MLNet\YOLOv4MLNet\Assets\Images\";
+                imagePath = @"C:\Users\ayakshibaeva\source\repos\402_yakshibaeva\YOLOv4MLNet\YOLOv4MLNet\Assets\Images";
             else if (!Directory.Exists(imagePath))
                 {
                     Console.WriteLine("  Incorrect input");
