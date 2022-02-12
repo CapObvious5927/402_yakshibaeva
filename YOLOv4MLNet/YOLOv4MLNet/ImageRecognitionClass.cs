@@ -16,7 +16,7 @@ using static Microsoft.ML.Transforms.Image.ImageResizingEstimator;
 namespace YOLOv4MLNet
 {
     //https://towardsdatascience.com/yolo-v4-optimal-speed-accuracy-for-object-detection-79896ed47b50
-    class ImageRecognitionClass
+    public class ImageRecognitionClass
     {
         static readonly string[] classesNames = new string[] { "person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed", "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush" };
         
@@ -27,7 +27,7 @@ namespace YOLOv4MLNet
 
         public static List<YoloV4Result> Recognize(string imagePath)
         {
-            const string modelPath = @"C:\Users\ayakshibaeva\source\repos\402_yakshibaeva\YOLOv4MLNet\YOLOv4MLNet\Assets\yolov4.onnx";
+            const string modelPath = @"C:\Users\ayakshibaeva\source\repos\402_yakshibaeva\YOLOv4MLNet\yolov4.onnx";
 
             MLContext mlContext = new MLContext();
             ConcurrentBag<YoloV4Result> modelOutput = new ConcurrentBag<YoloV4Result>();
@@ -64,7 +64,7 @@ namespace YOLOv4MLNet
             {
                 ConcurrentBag<YoloV4Result> objectsBag = new ConcurrentBag<YoloV4Result>();
                 var predictionEngine = mlContext.Model.CreatePredictionEngine<YoloV4BitmapData, YoloV4Prediction>(model);
-                using var bitmap = new Bitmap(Image.FromFile(imagePath));
+                var bitmap = new Bitmap(Image.FromFile(imagePath));
                 var predict = predictionEngine.Predict(new YoloV4BitmapData() { Image = bitmap });
                 var results = predict.GetResults(classesNames, 0.3f, 0.7f);
 
