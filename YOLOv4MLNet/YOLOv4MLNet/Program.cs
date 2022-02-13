@@ -46,7 +46,7 @@ namespace YOLOv4MLNet
 
         private static void CancellationHandler(object sender, ConsoleCancelEventArgs args)
         {
-            Console.WriteLine("\nExiting the program");
+            Console.WriteLine("\nImage recognition progress was stopped");
             ImageRecognitionClass.cancellationTokenSource.Cancel();
         }
         private static void ProgressBar(string message, List<YoloV4Result> objectsList)
