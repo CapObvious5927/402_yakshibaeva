@@ -155,16 +155,20 @@ namespace ImageRecognitionDB
                         var binaryArray= ConvertImageToByteArray(croppedImage);
 
                         var query = from item in context.Table where item.X == xCoord && item.Y == yCoord && item.Width == width && item.Height == height select item.Image;
-                        foreach (var item in query)
+                        bool isAlreadyinDB = false;
+                         foreach (var item in query)
                         {
                             // DB already has this obj
                             if (item.SequenceEqual(binaryArray))
-                                continue;
+                                isAlreadyinDB = true;
                                 
                         }
-           
-                        ImageObject imageObject = new ImageObject { Label = obj.Label, X = xCoord, Y = yCoord, Width = width, Height = height, Image = binaryArray };
-                        context.Table.Add(imageObject);
+
+                        if (!isAlreadyinDB)
+                        {
+                            ImageObject imageObject = new ImageObject { Label = obj.Label, X = xCoord, Y = yCoord, Width = width, Height = height, Image = binaryArray };
+                            context.Table.Add(imageObject);
+                        }
                     }
                     context.SaveChanges();
                 }
